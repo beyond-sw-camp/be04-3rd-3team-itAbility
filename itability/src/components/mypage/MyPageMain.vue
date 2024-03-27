@@ -70,9 +70,11 @@
     import MyFeed from './MyFeed.vue';
 
 
+
     // memberId 상태 관리
     const memberId = ref('');
 
+    
     // API에서 받아온 데이터를 저장할 객체
     const member = ref({
         image_url: '',
@@ -84,10 +86,18 @@
         recruitCategories: [],
         skills: []
     });
+    const follow = ref({
+        followers: 0,
+        following: 0
+    });
+    const GetFollow = async()=>{
+        await fetch(`http://localhost:8000/member-service/rest/mypage/6249388071526484419`)
+    }
+
 
 // API를 호출하여 데이터를 가져오는 함수
     const fetchData = async() => {
-     await fetch(`http://localhost:8000/member-service/rest/mypage/6249388071526484416`)
+     await fetch(`http://localhost:8000/member-service/rest/mypage/6249388071526484419`)
         .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok');

@@ -8,12 +8,10 @@
         <p>내용 <br>  &nbsp; {{ feed.boardContent }} </p> 
         <p>❤️: {{ feed.like }} 댓글<button @click="">▸</button></p>
         <hr>
-        <!-- <div v-if=""> -->
+
         <p style="font-size: 13px;" v-for="comment in feed.comments">
             <p>&nbsp;&nbsp; {{comment.cmtContent}}</p>    
         </p>
-        <!-- </div> -->
-        
       </div>
     </ul>
     </div>
@@ -21,20 +19,10 @@
 
 <script setup>
     import { ref } from 'vue';
-    const memberId = ref(null);
-
+    const memberId = ref(null);     //추후 개선할 필요한 부분.
     const feeds = ref([]);
-        // {
-        // boardId: '',
-        // boardTitle: '',
-        // boardContent: '',
-        // writeDate: '',
-        // hits: '',
-        // reportCount: '',
-        // isActive: '',
-        // comments: []
-    // });
-
+    
+    // 내 게시글 정보 요청
     const fetchData = async() => {
      await fetch(`http://localhost:8000/board-service/feeds/member/6249388071526484416`)
         .then(response => {
@@ -53,10 +41,8 @@
         });
     };
     fetchData();
-        
-
     function clickcommentList(comment){
-
+        // 댓글 열어보기 위한 로직입니댜~
     }
 </script>  
 

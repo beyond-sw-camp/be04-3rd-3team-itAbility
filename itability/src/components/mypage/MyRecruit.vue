@@ -2,7 +2,10 @@
 
     <ul>
       <div class="list" v-for="recruit in recruits" :key="boardId">
-        <p>제목:&nbsp;&nbsp; {{ recruit.recruitTitle }} </p>
+        <p>제목:&nbsp;&nbsp; {{ recruit.recruitTitle }} 
+            <button @click="editCareer(index)" style="float:right">수정</button>
+            <button @click="deleteCareer(index)" style="float:right">삭제</button>
+        </p>
         
         <p style="font-size: 12px; ">모집 마감일: {{ recruit.recruitExpDate }}   &nbsp;&nbsp; 모집인원: {{ recruit.recruitMbCnt }} &nbsp;&nbsp;
             종류:  <a v-if="recruit.recruitType == 'O'"> 외주</a>

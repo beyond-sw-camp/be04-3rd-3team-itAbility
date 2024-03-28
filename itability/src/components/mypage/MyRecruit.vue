@@ -9,7 +9,7 @@
                       <a v-else-if="recruit.recruitType == 'S'">스터디</a> 
         </p> 
         <p>
-            내용 <br> <a style="font-size: 12px;"> &nbsp; {{ recruit.recruitContent }} </a> 
+            내용 <br> <a style="font-size: 12px;"> &nbsp; {{ shortenContent(recruit.recruitContent) }} </a> 
         </p> 
         <button @click="openWaitMemberPopup(index)"> 신청 관리 </button>
       </div>
@@ -64,6 +64,7 @@
     const editedrecruit = ref(null);
     const rec = ref(null);
     
+
     // 내 모집글 정보 요청
     const fetchData = async() => {
         await fetch(`http://localhost:8000/board-service/recruit/member/6249388071526484416`)
@@ -94,7 +95,10 @@
         editedrecruit.value = null;
         showEditPopup.value = false;
     };
-
+    // 본문 내용 50자 이내로 나오게 함
+    function shortenContent(content) {
+        return content.length > 50 ? content.slice(0, 50) + '...' : content;
+    }
     // 모집글 수정
     const saveEditedrecruit = async () => {
         try {
@@ -313,6 +317,15 @@
         margin-top: 14px;
         border: 3px solid green;
         height: 60px;
+    }
+
+    button {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
     }
 
 </style>

@@ -1,5 +1,5 @@
 {
-  "name": "itability",
+  "name": "test",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -9,8 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "bootstrap": "^5.3.3",
-    "vue": "^3.4.21"
+    "axios": "^1.6.8",
+    "router": "^2.0.0-beta.2",
+    "routes": "^2.1.0",
+    "store": "^2.0.12",
+    "vue": "file:../../../../../../../store",
+    "vue-router": "^4.3.0",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",

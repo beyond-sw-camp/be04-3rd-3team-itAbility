@@ -3,8 +3,10 @@
     <div class="header-content">
       <div class="logo-and-nav">
         <nav class="nav-links">
+          <a href="http://localhost:5173">
           <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/683a152700baf48589f359acad675666562bef59cc2ceabdcb0265e61dac2b33?apiKey=79a2b7eb54dd4ed5b8fcf22467729821&" alt="Company Logo" class="logo" />
-          <a href="#" class="nav-link">피드</a>
+          </a>
+          <a href="https://localhost:5173/feeds" class="nav-link">피드</a>
           <a href="#" class="nav-link">모집글</a>
           <a href="#" class="nav-link">채용정보</a>
         </nav>
@@ -18,7 +20,7 @@
         </div>
       </div>
       <div class="auth-links">
-        <a href="#" class="auth-link">로그인 · 회원가입</a>
+        <a href="http://localhost:5173/login" class="auth-link">로그인 · 회원가입</a>
       </div>
     </div>
   </header>
@@ -166,3 +168,5 @@
   justify-content: center;
 }
 </style>
+<script setup>
+</script>

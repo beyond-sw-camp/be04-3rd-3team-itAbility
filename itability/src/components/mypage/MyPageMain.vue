@@ -93,40 +93,47 @@
         followers: 0,
         following: 0
     });
-    const GetFollow = async()=>{
-        await fetch(`http://localhost:8000/member-service/rest/mypage/6249388071526484419`)
-    }
+    // const GetFollow = async()=>{
+    //     await fetch(`http://localhost:8000/member-service/rest/mypage/6249388071526484416`)
+    // }
 
 
 // API를 호출하여 데이터를 가져오는 함수
-    const fetchData = async() => {
-    //  await fetch(`http://localhost:8000/member-service/rest/mypage/6249388071526484419`)
-     await fetch(`http://localhost:8000/rest/mypage/6249388071526484419`)
+const fetchData = async () => {
+    const cookies = document.cookie; // 현재 페이지의 쿠키를 가져옵니다.
+
+    console.log('cookies:', document.cookie);
+    console.log('cookies:', cookies);
+    
+    const options = {
+        method: 'GET',
+        // headers: {
+        //     'Cookie': cookies // 쿠키를 요청 헤더에 포함합니다.
+        // }
+    };
+    await fetch(`http://localhost:8000/member-service/rest/mypage/6249388071526484416`, options)
         .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        
-        return response.json();
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
         })
         .then(data => {
             console.log(data);
-        member.value.image_url = decodeURIComponent(data.image);
-        member.value.name = data.name;
-        member.value.nickname = data.nickname;
-        member.value.phone = data.phone;
-        member.value.birthDate = data.birthDate;
-        member.value.degreeDTO = data.degreeDTO;
-            // console.log(member.value.degreeDTO);
-        member.value.careers = data.careers;
-        member.value.recruitCategories = data.recruitCategories;
-        member.value.skills = data.skills;
-
+            member.value.image_url = decodeURIComponent(data.image);
+            member.value.name = data.name;
+            member.value.nickname = data.nickname;
+            member.value.phone = data.phone;
+            member.value.birthDate = data.birthDate;
+            member.value.degreeDTO = data.degreeDTO;
+            member.value.careers = data.careers;
+            member.value.recruitCategories = data.recruitCategories;
+            member.value.skills = data.skills;
         })
         .catch(error => {
-        console.error('There was a problem with the fetch operation:', error);
+            console.error('There was a problem with the fetch operation:', error);
         });
-    };
+};
     fetchData();
 
 

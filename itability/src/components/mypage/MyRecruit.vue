@@ -83,10 +83,9 @@
     };
     fetchData();
 
-    const loc = ref(null);
+
     // 수정 팝업 열기
     const openEditPopup = (index) => {
-        loc = index;
         editedrecruit.value = { ...recruits.value[index] };
         showEditPopup.value = true;
     };

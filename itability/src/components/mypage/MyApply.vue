@@ -3,7 +3,7 @@
     <ul>
       <div class="list" v-for="recruit in recruits" :key="boardId">
         <p>제목:&nbsp;&nbsp; {{ recruit.recruitDTO.recruitTitle }} 
-            <button @click="deleteCareer(index)" style="float:right">취소</button>
+            <button @click="deleteApply(recruit.memberRecruitInfoId)" style="float:right">취소</button>
         </p>
         
         <p style="font-size: 12px; ">모집 마감일: {{ recruit.recruitDTO.recruitExpDate }}   &nbsp;&nbsp; 모집인원: {{ recruit.recruitDTO.recruitMbCnt }} &nbsp;&nbsp;
@@ -56,6 +56,18 @@
         });
     };
     fetchData();
+
+    const deleteApply = async(memberRecruitInfoId) => {
+        await fetch(`http://localhost:8000/board-service/member_recruits/${memberRecruitInfoId}`,{
+            method: 'DELETE'
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+        });
+        fetchData();
+    }
+    
 </script>  
 
 <style scoped>

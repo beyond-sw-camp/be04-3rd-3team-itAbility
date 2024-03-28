@@ -12,17 +12,16 @@
             </div>
 
             <div class="profile-info">
-            <div class="nickname">{{ member.nickname }}</div>
+            <div class="nickname">{{ member.nickname }}    <button @click="openProfileEditPopUp"> edit</button> </div>
             
             <div class="stats">
 
-
                 <div class="follow">                
                     <div class="stat-label">팔로워 &nbsp;</div>
-                <div class="stat-value">{{ followers }} </div>
+                <div class="stat-value">{{ follow.followerCount }} </div>
 
                     <div class="stat-label">팔로잉 &nbsp;</div>
-                <div class="stat-value">{{ following }}</div>
+                <div class="stat-value">{{ follow.followingCount }}</div>
 
                 </div>
 
@@ -62,7 +61,39 @@
         </div>
     </div>
 
+    
+    <div class="popup-overlay" v-if="profileEditPopUpStatus">
+        <div class="popup-content" >
+            <span class="close" @click="closePopup">&times;</span>
+            <h2>프로필 편집</h2>
+            <div class="profile-image-container">
+                <div class="profile-image-wrapper">
+                    <img class="profile-image" :src="member.image_url" alt="Profile Image">
+                </div>
+                <br>
+                <br>
+                <form @submit.prevent="uploadImage">
+                    <input type="hidden" name="memberId" v-model="memberId" /> <!-- v-model을 사용하여 memberId와 양방향 바인딩 -->
+                    <input type="file" @change="previewImage" /> <!-- @change 이벤트를 사용하여 파일 선택 시 previewImage 메서드 호출 -->
+                    <img :src="imagePreview" /> <!-- 이미지 미리보기 -->
+                    <br />
+                    <button type="submit">Upload file</button> <!-- submit 버튼 -->
+                </form>
+                <br>
+                
+                <form id="modifyForm" @submit.prevent="submitForm">
+                    닉네임: <input type="text" name="nickname" v-model="member.nickname" /> <br>
+                    이름: <input type="text" name="name" v-model="member.name" /> <br>
+                    전화번호: <input type="text" name="phone" v-model="member.phone" /> <br>
+                    생년월일: <input type="date" name="birthDate" v-model="member.birthDate" /> <br>
+                    <button type="submit">수정 완료</button>
+                </form>
 
+            </div>
+        </div>
+    </div>
+
+    
 </template>
   
 <script setup>
@@ -74,8 +105,9 @@
 
 
 
+
     // memberId 상태 관리
-    const memberId = ref('');
+    const memberId = ref('6249388071526484416');
 
     
     // API에서 받아온 데이터를 저장할 객체
@@ -90,13 +122,46 @@
         skills: []
     });
     const follow = ref({
-        followers: 0,
-        following: 0
+        follower: [],
+        following: [],
+        followingCount: 0,
+        followerCount: 0
     });
-    // const GetFollow = async()=>{
-    //     await fetch(`http://localhost:8000/member-service/rest/mypage/6249388071526484416`)
-    // }
-
+    const GetFollow = async()=>{
+        await fetch(`http://localhost:8000/member-service/follow/follows/6249388071526484416`).then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+            follow.value.following = data.following;
+            console.log(follow.value.following);
+            follow.value.followingCount = data.length;
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
+    };
+    const GetFollower = async()=>{
+        await fetch(`http://localhost:8000/member-service/follow/followers/6249388071526484416`).then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+            follow.value.follower = data.follower;
+            follow.value.followerCount = data.length;
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
+    };
+    GetFollow();
+    GetFollower();
 
 // API를 호출하여 데이터를 가져오는 함수
 const fetchData = async () => {
@@ -111,7 +176,7 @@ const fetchData = async () => {
         //     'Cookie': cookies // 쿠키를 요청 헤더에 포함합니다.
         // }
     };
-    await fetch(`http://localhost:8000/member-service/rest/mypage/6249388071526484416`, options)
+    await fetch(`http://localhost:8000/member-service/rest/mypage/6249388071526484416`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -133,7 +198,7 @@ const fetchData = async () => {
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);
         });
-};
+    };
     fetchData();
 
 
@@ -141,6 +206,96 @@ const fetchData = async () => {
     const setActiveButton = (button) => {
         activeButton.value = button;
     };
+
+    const profileEditPopUpStatus = ref(false);
+
+    const openProfileEditPopUp = (index) =>{
+        profileEditPopUpStatus.value = true;
+    };
+    const closePopup = () => {
+        profileEditPopUpStatus.value = false;
+    };
+    
+    const uploadImage = () => {
+        if (!memberId.value) {
+            // 멤버 ID가 없는 경우에는 처리하지 않음
+            return;
+        }
+        const fileInput = document.querySelector('input[type="file"]');
+        const file = fileInput.files[0];
+        const formData = new FormData();
+        formData.append('file', file);
+
+        fetch(`http://localhost:8000/member-service/image/profile/${memberId.value}`, {
+            method: 'PATCH',
+            body: formData
+        })
+        .then(response => {
+            // 서버 응답을 JSON으로 파싱하지 않음
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            // 응답 반환
+            return response;
+        })
+        .then(data => {
+            console.log('Image URL:', data);
+            fetchData();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    };
+
+    const imagePreview = ref(null); // 이미지 미리보기 URL
+
+
+    const previewImage = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+        imagePreview.value = reader.result;
+        };
+        reader.readAsDataURL(file);
+    }
+};
+
+    const submitForm = () => {
+        // fetch를 사용하여 서버에 수정된 정보 전송
+        fetch(`http://localhost:8000/member-service/rest/mypage/${memberId.value}`, {
+            method: 'PUT',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                memberId: memberId.value,
+                nickname: member.value.nickname,
+                name: member.value.name,
+                phone: member.value.phone,
+                birthDate: member.value.birthDate
+            })
+        })
+        .then(response => {
+            // 서버 응답 확인
+            if (!response.ok) {
+            throw new Error('Network response was not ok');
+            }
+            // 응답 반환
+            return response.json();
+        })
+        .then(data => {
+            console.log('Response:', data);
+            // 처리 완료 후 필요한 로직 구현
+            fetchData();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });    
+    };
+
+
+
     
 </script>
 
@@ -273,5 +428,75 @@ const fetchData = async () => {
         border: none;
         border-radius: 5px;
         cursor: pointer;
+    }
+
+    /* 수정 팝업 스타일 */
+    .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+
+    .popup-content {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        width: 800px;
+        height: 800px;
+        overflow-y: auto; /* 수직 스크롤 활성화 */
+        max-height: 70vh; /* 팝업 창의 최대 높이 지정 */
+    }
+
+    .popup-content h2 {
+        margin-bottom: 20px;
+    }
+
+    .popup-content .form-group {
+        margin-bottom: 20px;
+    }
+
+    .popup-content label {
+        font-weight: bold;
+    }
+
+    .popup-content input[type="text"],
+    .popup-content textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        resize: none;
+            height: auto; /* 초기 높이를 자동으로 설정 */
+    }
+
+    .popup-content button {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .popup-content button:hover {
+        background-color: #45a049;
+    }
+
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 24px;
+        cursor: pointer;
+    
     }
 </style>

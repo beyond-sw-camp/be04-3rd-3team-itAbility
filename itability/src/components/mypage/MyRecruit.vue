@@ -6,16 +6,17 @@
             <button @click="openEditPopup(index)" style="float:right">수정</button>
             <button @click="deleteRecruit(recruit.recruitId)" style="float:right">삭제</button>
         </p>
-        
         <p style="font-size: 12px; ">모집 마감일: {{ recruit.recruitExpDate }}   &nbsp;&nbsp; 모집인원: {{ recruit.recruitMbCnt }} &nbsp;&nbsp;
             종류:  <a v-if="recruit.recruitType == 'O'"> 외주</a>
                       <a v-else-if="recruit.recruitType == 'S'">스터디</a> 
         </p> 
-        <p>내용 <br> <a style="font-size: 12px;"> &nbsp; {{ recruit.recruitContent }} </a> </p> 
+        <p>
+            내용 <br> <a style="font-size: 12px;"> &nbsp; {{ recruit.recruitContent }} </a> 
+        </p> 
+        <button @click="openWaitMemberPopup(index)"> 신청 관리 </button>
       </div>
       <hr>
     </ul>
-
     <!-- 수정팝업 -->
     <div class="popup-overlay" v-if="showEditPopup">
         <div class="popup-content">
@@ -32,26 +33,31 @@
           <button @click="saveEditedrecruit">저장</button>
         </div>
     </div>
+    
+    <!-- 신청자 목록 팝업 ( 해당 모집글에 신청한 인원 중 대기 중인 인원들만 리스트로 보여준다.) -->
+    <div class="popup-overlay" v-if="showWaitListPopup">
+        <div class="popup-content">
+            <span class="close" @click="closeWaitListPopup">&times;</span>
+            <h2>신청자 목록</h2>
+            <div v-for="member in waitMembers">
+                <a v-if="member.recruitStatus=='대기'"></a> 
+                meberId: {{ member.memberId }}
+            </div>
+        </div>
+    </div>
 
 </template>
 
 <script setup>
-    /**
-    {
-        "recruitId": 2,
-        "recruitType": "O",
-        "recruitTitle": "파이썬 웹 개발 프로젝트 외주",
-        "recruitContent": "파이썬",
-        "recruitExpDate": "2024-03-14",
-        "recruitMbCnt": 3,
-        "memberInfoDTO": 6249388071526484416
-    }
-     */
     import { ref } from 'vue';
     const memberId = ref(null);     //추후 개선할 필요한 부분.
     const recruits = ref([]);
     const showEditPopup = ref(false);
+    const showWaitListPopup = ref(false);
+
+    const waitMembers = ref([]);
     const editedrecruit = ref(null);
+    const rec = ref(null);
     
     // 내 모집글 정보 요청
     const fetchData = async() => {
@@ -76,7 +82,6 @@
         editedrecruit.value = { ...recruits.value[index] };
         showEditPopup.value = true;
     };
-
     // 수정 팝업 닫기
     const closeEditPopup = () => {
         editedrecruit.value = null;
@@ -107,6 +112,39 @@
         console.error('There was a problem with the fetch operation:', error);
         }
     };
+    const openWaitMemberPopup = (index) =>{
+        rec.value = { ...recruits.value[index] };
+        showWaitMembers();
+        showWaitListPopup.value = true;
+    };
+    const closeWaitListPopup = () => {
+        // editedrecruit.value = null;
+        showWaitListPopup.value = false;
+    };
+
+    // 해당 모집글의 신청인원들 조회(대기중인사람만)
+    const showWaitMembers = async () => {
+        try {
+            const response = await fetch(`http://localhost:8000/board-service/member_recruits/list/${rec.value.recruitId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+                })
+                .then(data => {
+                    console.log(data);
+                    waitMembers.value=data;
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+            
+        } catch (error) {
+            console.error('There was a problem with the fetch operation:', error);
+        }
+    };
+
 
     // 모집글 삭제
     const deleteRecruit = async (recruitId) => {

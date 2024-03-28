@@ -15,8 +15,8 @@
         </div>
         <div class="weather-info">
           <span class="weather-text">오늘 날씨는</span>
-          <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/428af544b7052b650a06943d2bb2a6df86aea7f608e92722fc6438878e5eae45?apiKey=79a2b7eb54dd4ed5b8fcf22467729821&" alt="Weather Icon" class="weather-icon" />
-          <span class="temperature">15°C</span>
+          <img :src="'https://openweathermap.org/img/wn/' + weatherInfo.icon + '.png'" alt="Weather Icon" class="weather-icon" />
+          <span class="temperature">{{ weatherInfo.temperature }}°C</span>
         </div>
       </div>
       <div class="auth-links">
@@ -168,5 +168,45 @@
   justify-content: center;
 }
 </style>
-<script setup>
+<script>
+export default {
+  name: 'HeaderComponent',
+  data() {
+    return {
+      weatherInfo: {
+        temperature: 'Loading...',
+        icon: null
+      },
+    };
+  },
+  methods: {
+    async fetchWeather() {
+      const city = 'Seoul';
+      const apiKey = 'aa237cabd8bd6dd1e5374da90756d5b5';
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error('Failed to fetch weather data');
+        }
+        const data = await response.json();
+        this.weatherInfo = {
+          temperature: data.main.temp,
+          icon: data.weather[0].icon
+        };
+      } catch (error) {
+        console.error('Failed to fetch weather data:', error);
+        this.weatherInfo = {
+          temperature: 'N/A',
+          icon: null
+        };
+      }
+    },
+  },
+  mounted() {
+    this.fetchWeather();
+  },
+};
 </script>
+

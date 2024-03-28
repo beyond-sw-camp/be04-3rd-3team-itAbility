@@ -86,7 +86,7 @@
     // 모집글 수정
     const saveEditedrecruit = async () => {
         try {
-        const response = await fetch(`http://localhost:8000/board-service/recruits/${editedrecruit.value.recruitId}`, {
+        const response = await fetch(`http://localhost:8000/board-service/recruit/modify/${editedrecruit.value.recruitId}`, {
             method: 'PUT',
             headers: {
             'Content-Type': 'application/json'
@@ -107,6 +107,7 @@
         console.error('There was a problem with the fetch operation:', error);
         }
     };
+
     // 모집글 삭제
     const deleteRecruit = async (recruitId) => {
         try {

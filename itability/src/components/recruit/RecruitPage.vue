@@ -1,6 +1,5 @@
 <script setup>
-  import Header from './Header.vue';
-  import Footer from './Footer.vue';
+
   import MenuBar from './MenuBar.vue';
   import LeftMenu from './LeftMenu.vue';
   import FilterBar from './FilterBar.vue';

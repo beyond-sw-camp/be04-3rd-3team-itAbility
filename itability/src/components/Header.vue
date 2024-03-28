@@ -6,9 +6,10 @@
           <a href="http://localhost:5173">
           <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/683a152700baf48589f359acad675666562bef59cc2ceabdcb0265e61dac2b33?apiKey=79a2b7eb54dd4ed5b8fcf22467729821&" alt="Company Logo" class="logo" />
           </a>
-          <a href="https://localhost:5173/feeds" class="nav-link">피드</a>
-          <a href="#" class="nav-link">모집글</a>
-          <a href="#" class="nav-link">채용정보</a>
+          <button @click="changeRouter('/')">피드</button>
+          <button @click="changeRouter('/recruit')">모집글</button>
+          <button @click="changeRouter('/career')">채용정보</button>
+          <button @click="changeRouter('/mypage')">마이페이지</button>
         </nav>
         <div class="search-box">
           <input type="text" placeholder="검색" class="search-input" />
@@ -168,5 +169,14 @@
   justify-content: center;
 }
 </style>
+
 <script setup>
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+  const changeRouter = (path) => {
+    // Vue Router의 push 메서드를 사용하여 해당 경로로 이동
+    router.push(path);
+  };
 </script>

@@ -4,8 +4,8 @@
         <div class="list" v-for="(feed, index) in feeds" :key="feed.boardId">
             <p>
                 제목:&nbsp;&nbsp; {{ feed.boardTitle }} <i class="bi bi-chat-dots"></i>
-                <button @click="openEditPopup(index)" style="float:right">수정</button>
                 <button @click="deleteFeed(feed.boardId)" style="float:right">삭제</button>
+                <button @click="openEditPopup(index)" style="float:right">수정</button>
             </p>
             <p style="font-size: 12px;">
                 &nbsp;&nbsp;&nbsp; 
@@ -243,6 +243,14 @@
         font-size: 24px;
         cursor: pointer;
     
+    }
+    button {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
     }
 </style>
 

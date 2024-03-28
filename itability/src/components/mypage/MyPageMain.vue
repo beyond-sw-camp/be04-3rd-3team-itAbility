@@ -97,7 +97,8 @@
 
 // API를 호출하여 데이터를 가져오는 함수
     const fetchData = async() => {
-     await fetch(`http://localhost:8000/member-service/rest/mypage/6249388071526484419`)
+    //  await fetch(`http://localhost:8000/member-service/rest/mypage/6249388071526484419`)
+     await fetch(`http://localhost:8000/rest/mypage/6249388071526484419`)
         .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -130,6 +131,7 @@
     const setActiveButton = (button) => {
         activeButton.value = button;
     };
+    
 </script>
 
 
@@ -245,10 +247,17 @@
         color: black;
         font-size: 20px;
         border-radius: 8px;
-        
     }
 
     .selectView button.active {
         background-color: rgb(68, 68, 68); /* 클릭한 버튼 색상 */
+    }
+    button {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
     }
 </style>

@@ -150,54 +150,40 @@
 }
 </style>
 
+
+
+
 <script setup>
 import { ref } from 'vue';
-import axios from 'axios';
-import { useRouter } from 'vue-router';
-import { useStore } from 'vuex';
 
-const router = useRouter();
-const store = useStore();
+// API 호출 시 사용할 프록시 기반 URL
+const API_BASE_URL = '/api';
 
-const email = ref('');
-const password = ref('');
-
-const submitLoginForm = async () => {
-  const loginForm = {
-    username: email.value,
-    password: password.value,
-  };
-
+// 페이지 리다이렉션을 위한 함수
+async function redirectToSocialLogin(provider) {
   try {
-    const res = await axios.post('/login', loginForm);
-    if (res.status === 200) {
-      store.commit('setToken', res.data);
-      sessionStorage.setItem('accessToken', res.data);
-      alert('로그인하였습니다');
-      await router.push('/');
+    // Fetch API를 사용하여 소셜 로그인 URL을 가져온 후 리다이렉트 처리
+    const response = await fetch(`${API_BASE_URL}/member-service/oauth2/authorization/${provider}`, {
+      method: 'GET',
+      credentials: 'include' // 쿠키를 포함시키기 위한 설정
+    });
+    if (response.ok) {
+      // 응답이 성공적인 경우, 응답의 URL로 페이지를 리다이렉트
+      window.location.href = response.url;
+    } else {
+      console.error(`${provider} 로그인 요청 실패:`, response.statusText);
     }
   } catch (error) {
-    alert('로그인에 실패하였습니다.');
+    console.error(`${provider} 로그인 요청 중 오류 발생:`, error);
   }
-};
-</script>
+}
 
+// 카카오 로그인 버튼 클릭 시 호출될 함수
+const onKakaoLogin = () => redirectToSocialLogin('kakao');
 
-<script>
-import axios from "axios";
+// 네이버 로그인 버튼 클릭 시 호출될 함수
+const onNaverLogin = () => redirectToSocialLogin('naver');
 
-axios
-    .get("http://localhost:8000/", {withCredentials: true})
-    .then((res) => {
-      alert(JSON.stringify(res.data))
-      const token = response.data.token;
-      document.cookie('accessToken', token);
-      alert('로그인 성공');
-    })
-    .catch(error => {
-      alert('로그인 실패: ' + error);
-    })
-    .catch((error) => alert(error))
-
-
+// 구글 로그인 버튼 클릭 시 호출될 함수
+const onGoogleLogin = () => redirectToSocialLogin('google');
 </script>

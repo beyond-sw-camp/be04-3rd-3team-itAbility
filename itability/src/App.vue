@@ -8,7 +8,7 @@
 <template>
   <Header/>
   
-  <div class="mypage"><MyPageMain/></div>
+    <div class="mypage"><MyPageMain/></div>
 
   <Footer/>
 </template>

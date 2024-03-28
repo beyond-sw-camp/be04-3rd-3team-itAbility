@@ -1,10 +1,8 @@
 <template>
-
-    <ul>
       <div class="list" v-for="(recruit, index) in recruits" :key="recruit.recruitId">
         <p>제목:&nbsp;&nbsp; {{ recruit.recruitTitle }} 
-            <button @click="openEditPopup(index)" style="float:right">수정</button>
             <button @click="deleteRecruit(recruit.recruitId)" style="float:right">삭제</button>
+            <button @click="openEditPopup(index)" style="float:right">수정</button>
         </p>
         <p style="font-size: 12px; ">모집 마감일: {{ recruit.recruitExpDate }}   &nbsp;&nbsp; 모집인원: {{ recruit.recruitMbCnt }} &nbsp;&nbsp;
             종류:  <a v-if="recruit.recruitType == 'O'"> 외주</a>
@@ -15,8 +13,7 @@
         </p> 
         <button @click="openWaitMemberPopup(index)"> 신청 관리 </button>
       </div>
-      <hr>
-    </ul>
+
     <!-- 수정팝업 -->
     <div class="popup-overlay" v-if="showEditPopup">
         <div class="popup-content">
@@ -36,12 +33,20 @@
     
     <!-- 신청자 목록 팝업 ( 해당 모집글에 신청한 인원 중 대기 중인 인원들만 리스트로 보여준다.) -->
     <div class="popup-overlay" v-if="showWaitListPopup">
-        <div class="popup-content">
+        <div class="popup-content" >
             <span class="close" @click="closeWaitListPopup">&times;</span>
             <h2>신청자 목록</h2>
-            <div v-for="member in waitMembers">
-                <a v-if="member.recruitStatus=='대기'"></a> 
-                meberId: {{ member.memberId }}
+            <div class="applyList" v-for="(member,index) in waitMembers">
+                <div class="applyMember" v-if="member.recruitStatus=='대기'">
+                    meberId: {{ member.memberId }} &nbsp;&nbsp; {{ member.recruitStatus }} 
+                    <button @click="denyRecruit(member.memberRecruitInfoId,index)" style="float:right">거절</button>
+                    <button @click="acceptRecruit(member.memberRecruitInfoId,index)" style="float:right">수락</button>
+                </div> 
+                <div class="applyMember" v-else>
+                    meberId: {{ member.memberId }} &nbsp;&nbsp; {{ member.recruitStatus }} 
+                </div>
+
+                
             </div>
         </div>
     </div>
@@ -77,8 +82,11 @@
         });
     };
     fetchData();
+
+    const loc = ref(null);
     // 수정 팝업 열기
     const openEditPopup = (index) => {
+        loc = index;
         editedrecruit.value = { ...recruits.value[index] };
         showEditPopup.value = true;
     };
@@ -144,7 +152,39 @@
             console.error('There was a problem with the fetch operation:', error);
         }
     };
+    // 신청 수락
+    const acceptRecruit = async (memberRecruitInfoId, index) => {
+        try{
+            const response = await fetch(`http://localhost:8000/board-service/member_recruits/accept/${memberRecruitInfoId}`, {
+            method: 'PUT',
+            })
+            .then(response => {
+                if(!response.ok) {
+                    console.log('응답 not OK');
+                }
+            })
+            showWaitMembers();
+        }catch (error) {
+            console.error('There was a problem with the fetch operation:', error);
+        }
+    };
 
+    // 신청 거절
+    const denyRecruit = async (memberRecruitInfoId) => {
+        try{
+            const response = await fetch(`http://localhost:8000/board-service/member_recruits/reject/${memberRecruitInfoId}`, {
+            method: 'PUT',
+            })
+            .then(response => {
+                if(!response.ok) {
+                    console.log('응답 not OK');
+                }
+            })
+            showWaitMembers();
+        }catch (error) {
+            console.error('There was a problem with the fetch operation:', error);
+        }
+    };
 
     // 모집글 삭제
     const deleteRecruit = async (recruitId) => {
@@ -183,6 +223,7 @@
         margin-bottom: 10px;
     }
     .list {
+        margin-top: 20px;
         font-size: 20px;
         border: 1px solid #515151;
         height: 50%;
@@ -214,7 +255,8 @@
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         width: 800px;
         height: 800px;
-    
+        overflow-y: auto; /* 수직 스크롤 활성화 */
+        max-height: 70vh; /* 팝업 창의 최대 높이 지정 */
     }
 
     .popup-content h2 {
@@ -261,5 +303,17 @@
     
     }
     
+    .applyList{
+        height: 60px;
+        padding: 0 10%;
+        margin-bottom: 2px;
+    }
+    .applyMember{
+        padding: 0 10%;
+        padding-top: 10px;
+        margin-top: 14px;
+        border: 3px solid green;
+        height: 60px;
+    }
 
 </style>

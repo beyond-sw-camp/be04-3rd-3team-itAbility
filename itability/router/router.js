@@ -8,7 +8,6 @@ import FeedCreate from "@/components/Feed/FeedCreate.vue";
 import RecruitPage from "@/components/recruit/RecruitPage.vue";
 import Jobs from "@/components/jobs/jobs.vue";
 
-
 const routes = [
     {path: '/login', component: Login},
     {
@@ -17,7 +16,7 @@ const routes = [
         component: FeedDetail,
     },
     {
-        path: '/feeds',
+        path: '/',
         component: FeedList
     },
     {

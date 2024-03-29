@@ -6,7 +6,9 @@
         <RouterView style="margin: 0 25%;"/>
 
   </main>
-  <footer><Footer/></footer>
+  <footer>
+    <Footer/>
+  </footer>
 </template>
 
 <script setup>

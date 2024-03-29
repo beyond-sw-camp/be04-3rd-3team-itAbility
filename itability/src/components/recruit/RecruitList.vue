@@ -1,5 +1,5 @@
 <script setup>
-    import RecruitCard from './RecruitCard.vue';
+    import RecruitCard from '@/components/recruit/RecruitCard.vue';
 
     import { onMounted, reactive } from 'vue';
 
@@ -11,7 +11,6 @@
     });
 
     const fetchRecruits = async() => {
-
         try {
             const response = await fetch("http://localhost:8000/board-service/recruit/list");
 
@@ -27,8 +26,6 @@
                 recruit.currentMbCnt = await fetchRecruitInfos(recruit.recruitId);
                 recruit.categoryList = await fetchCategoryList(recruit.recruitId);
             }
-
-            console.log(state.recruits);
 
         } catch (error) {
             console.error('Fetch error:', error.message);

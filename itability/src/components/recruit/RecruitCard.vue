@@ -1,9 +1,40 @@
 <script setup>
     import { defineProps, reactive, onMounted } from "vue";
+    import { useRouter } from "vue-router";
+
+    const router = useRouter();
 
     const props = defineProps({
         recruit: Object
     })
+    
+    const state = reactive({
+        skillList: []
+    })
+    
+    const recruitDetail = (recruitId) => {
+        // router.push({path: "/recruit/detail", query: props.recruit});
+        router.push(`recruit/${recruitId}`);
+    }
+
+    const fetchSkillList = async() => {
+
+        try {
+            const response = await fetch(`http://localhost:8000/board-service/recruit/recruit-skill/${props.recruit.recruitId}`);
+
+            if (!response.ok) {
+                throw new Error('Error!');
+            }
+
+            const data = await response.json();
+            state.skillList = data;
+
+            console.log(state.skillList);
+
+        } catch (error) {
+            console.error('Fetch error:', error.message);
+        }
+    };
 
     // const member = reactive({
     //     nickname: ''
@@ -16,14 +47,14 @@
     //     console.log(data);
     // }
 
-    // onMounted(async() => {
-    //     await fetchMemberInfo(props.recruit.memberId);
-    // });
+    onMounted(async() => {
+        // await fetchSkillList();
+    });
     
 </script>
 
 <template>
-    <div class="recruit-card">
+    <div class="recruit-card" @click="recruitDetail(props.recruit.recruitId)">
       <template v-if="recruit.completeState">
         <div class="title-area">
             <div class="complete-state">모집완료</div>      <!-- 색 변경 추가 -->
@@ -49,7 +80,11 @@
             <div>모집군</div> 
             <div v-for="category in recruit.categoryList" class="category-skill">{{ category.recruitCategoryName }}</div>
         </div>
-
+        <!-- <div class="category-area">
+            <div>기술스택</div>
+            <div v-for="skill in state.skillList" class="category-skill">{{ skill.skillName }}</div>
+        </div> -->
+        
         <div class="member">
 
         </div>
@@ -145,7 +180,8 @@
         color: #000;
         font-family: Inter, sans-serif;
         line-height: 200%;
-        align-self: stretch;
+        align-self: center;
+        padding-right: 20px;
         /* flex: 1; 자식 요소가 부모 요소의 남은 공간을 차지하도록 설정 */
     }@media (max-width: 991px) {
         .recruit-content {

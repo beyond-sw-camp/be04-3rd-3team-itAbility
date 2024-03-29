@@ -1,14 +1,12 @@
 <script setup>
-
-  import MenuBar from './MenuBar.vue';
-  import LeftMenu from './LeftMenu.vue';
-  import FilterBar from './FilterBar.vue';
-  import RecruitList from "./RecruitList.vue";
+  import MenuBar from '@/components/recruit/MenuBar.vue';
+  import LeftMenu from '@/components/recruit/LeftMenu.vue';
+  import FilterBar from '@/components/recruit/FilterBar.vue';
+  import RecruitList from "@/components/recruit/RecruitList.vue";
 </script>
 
 <template>
-  <Header></Header>
-  <div style="padding: 0px 20px;">
+  <div>
     <MenuBar/>
     <hr style="height: 1px; background-color: black;">
     <div style="display: flex;">
@@ -19,7 +17,6 @@
         </div>
     </div>
   </div>
-  <Footer></Footer>
 </template>
 
 <style scoped>

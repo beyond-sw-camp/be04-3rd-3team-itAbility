@@ -6,7 +6,7 @@
       <div class="all">
         <img
           loading="lazy"
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/067e412f4620e9fabf5429d1fc6fe39182d9a7e41401294f3a4fc474cb6c287e?"
+          src="@/assets/recruit/all-button.svg"
           class="img"
         />
         <div class="title">전체</div>
@@ -14,7 +14,7 @@
       <div class="pm">
         <img
           loading="lazy"
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/c8b825bd2bb30d863cff5dea39c82779247d505f9c903eeeabd763044404f721?"
+          src="@/assets/recruit/pm-button.svg"
           class="img-2"
         />
         <div class="title">PM</div>
@@ -22,7 +22,7 @@
       <div class="front">
         <img
           loading="lazy"
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/39630b5b2a94f4830ecd52c7e11e824bf30498dfe49375d3c5e6e3910ac9c455?"
+          src="@/assets/recruit/front-button.svg"
           class="img-3"
         />
         <div class="title">프론트엔드</div>
@@ -30,7 +30,7 @@
       <div class="back">
         <img
           loading="lazy"
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/9aa373d5d651921cb2ab6f1fa3fbb7fe56a8aaa1535a91c2e3b527dd2b9ae4c6?"
+          src="@/assets/recruit/back-button.svg"
           class="img-4"
         />
         <div class="title">백엔드</div>
@@ -38,7 +38,7 @@
       <div class="design">
         <img
           loading="lazy"
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/4e96eaf516ef5c060ff4f3e549affd7e7bd731e3e48e5087690db25473032275?"
+          src="@/assets/recruit/design-button.svg"
           class="img-5"
         />
         <div class="title">디자인</div>
@@ -46,7 +46,7 @@
       <div class="app">
         <img
           loading="lazy"
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/7467fdbfea616d9446b851c074e4edf30f13a9bfcaf0c784610b14500d77dbd7?"
+          src="@/assets/recruit/app-button.svg"
           class="img-6"
         />
         <div class="title">APP</div>
@@ -58,6 +58,7 @@
     align-self: start;
     display: flex;
     margin-top: 10px;
+    margin-right: -15px;
     flex-direction: column;
     font-size: 18px;
     color: #747474;

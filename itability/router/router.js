@@ -7,6 +7,8 @@ import FeedList from "@/components/Feed/FeedList.vue";
 import FeedCreate from "@/components/Feed/FeedCreate.vue";
 import RecruitPage from "@/components/recruit/RecruitPage.vue";
 import Jobs from "@/components/jobs/jobs.vue";
+import RecruitDetailPage from '@/components/recruit/RecruitDetailPage.vue';
+import RecruitRegistPage from '@/components/recruit/RecruitRegistPage.vue';
 
 const routes = [
     {path: '/login', component: Login},
@@ -42,6 +44,14 @@ const routes = [
     {
         path: '/jobs',
         component: Jobs
+    },
+    {
+        path: '/recruit/:recruitId',
+        component: RecruitDetailPage
+    },
+    {
+        path: '/recruit/regist',
+        component: RecruitRegistPage
     }
 ]
 

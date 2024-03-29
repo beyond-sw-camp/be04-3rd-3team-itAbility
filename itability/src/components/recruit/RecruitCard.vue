@@ -14,7 +14,7 @@
     
     const recruitDetail = (recruitId) => {
         // router.push({path: "/recruit/detail", query: props.recruit});
-        router.push(`recruit/${recruitId}`);
+        router.push(`/recruit/${recruitId}`);
     }
 
     const fetchSkillList = async() => {

@@ -6,6 +6,7 @@ import MyPageMain from "@/components/mypage/MyPageMain.vue";
 import FeedList from "@/components/Feed/FeedList.vue";
 import FeedCreate from "@/components/Feed/FeedCreate.vue";
 import RecruitPage from "@/components/recruit/RecruitPage.vue";
+import Jobs from "@/components/jobs/jobs.vue";
 
 
 const routes = [
@@ -36,12 +37,15 @@ const routes = [
         path: '/',
         component: FeedList
     },
+    
     {
         path: '/recruit',
         component: RecruitPage
-
+    },
+    {
+        path: '/jobs',
+        component: Jobs
     }
-
 ]
 
 const router = createRouter({

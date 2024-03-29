@@ -8,7 +8,7 @@
           </a>
           <button @click="changeRouter('/')">피드</button>
           <button @click="changeRouter('/recruit')">모집글</button>
-          <button @click="changeRouter('/career')">채용정보</button>
+          <button @click="changeRouter('/jobs')">채용정보</button>
           <button @click="changeRouter('/mypage')">마이페이지</button>
         </nav>
         <div class="search-box">

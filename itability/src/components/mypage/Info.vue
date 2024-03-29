@@ -33,16 +33,22 @@
             </div>
         </div>
     </div>
+    
     <div class="popup-overlay" v-if="SkillPopUp">
         <div class="popup-content" >
             <span class="close" @click="OffSkillPopUp">&times;</span>
             <h2>기술스택 관리</h2>
-            <div class="profile-image-container">
-                <form id="modifyForm" @submit.prevent="submitForm">
-
-                    <button type="submit">추가</button>
-                </form>
-
+            <div class="profile-image-container" >
+                  <br>기술 목록 <br>
+                  <div class="skillBox" v-for="skill in skills" :key="index" style="display: flex;">
+                    <span style="cursor: pointer; text-decoration: underline;" @click="addSkill(skill)">{{ skill.skillName }}</span>
+                  </div>
+                  <br>
+                  추가된 목록 <br>
+                  <div class="skillBox" v-for="skill in SkillForRequest" :key="index" style="display: flex;">
+                    <span style="cursor: pointer; text-decoration: underline;" @click="eraseSkill(skill)">{{ skill.skillName }}</span>
+                  </div>
+                  <button type="submit" @click="saveSkill">추가</button>
             </div>
         </div>
     </div>
@@ -52,8 +58,16 @@
             <h2>전문분야 관리</h2>
             <div class="profile-image-container">
                 <form id="modifyForm" @submit.prevent="submitForm">
-
-                    <button type="submit">추가</button>
+                    <br>기술 목록 <br>
+                  <div class="recruitBox" v-for="recruit in AllRecCate" :key="index" style="display: flex;">
+                    <span style="cursor: pointer; text-decoration: underline;" @click="addRecCate(recruit)">{{ recruit.recruitName }}</span>
+                  </div>
+                  <br>
+                  추가된 목록 <br>
+                  <div class="recruitBox" v-for="recruit in RecCateForRequest" :key="index" style="display: flex;">
+                    <span style="cursor: pointer; text-decoration: underline;" @click="eraseRecCate(recruit)">{{ recruit.recruitName }}</span>
+                  </div>
+                  <button type="submit" @click="saveRecCate">추가</button>
                 </form>
 
             </div>
@@ -65,7 +79,7 @@
       <button @click="OnRecCatePopUp">편집</button>
     </div>
     <ul>
-      <div class="skillBox" v-for="category in member.recruitCategories" :key="category">
+      <div class="recruitBox" v-for="category in member.recruitCategories" :key="category">
         {{ category }}
       </div>
     </ul>
@@ -84,16 +98,6 @@
         </div>
     </ul>
 
-    <!-- 기술스택 편집 팝업 -->
-    <div v-if="showEditPopup" class="edit-popup">
-      <h2>기술스택 편집</h2>
-      <ul>
-        <li v-for="(skill, index) in availableSkills" :key="index" @click="addSkill(skill)">
-          {{ skill }} 
-        </li>
-      </ul>
-      <button @click="closePopup">닫기</button>
-    </div>
   </div>
   </template>
 
@@ -109,6 +113,11 @@
     const assignedTask = ref(null);
     const startDate = ref(null);
     const endDate = ref(null);
+
+    const SkillForRequest = ref([]);
+    const RecCateForRequest = ref([]);
+    const AllRecCate = ref([]);
+
         // formData.append('is_current_job', false);
     const props = defineProps(['member']);
     const memberId = ref('6249388071526484416');
@@ -122,6 +131,8 @@
     };
     const SkillPopUp = ref(false);
     const OnSkillPopUp = (index) =>{
+        SkillForRequest.value = [];
+        GetAllSkill();
         SkillPopUp.value = true;
     };
     const OffSkillPopUp = () => {
@@ -129,6 +140,8 @@
     };
     const RecCatePopUp = ref(false);
     const OnRecCatePopUp = (index) =>{
+        RecCateForRequest.value = [];
+        GetAllRecCate();
         RecCatePopUp.value = true;
     };
     const OffRecCatePopUp = () => {
@@ -200,9 +213,132 @@
     });
 };
   
+  const skills = ref([]);
 
+  const GetAllSkill = async()=>{
+        await fetch(`http://localhost:8000/member-service/skill/skills`).then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+            skills.value = data;
+            console.log(skills.value);
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
+    };
 
+    const addSkill = (skill)=> {
+        const index = skills.value.findIndex(s => s.id == skill.id);
+        SkillForRequest.value.push(skill);
+        console.log(SkillForRequest.value);
+        skills.value.splice(index, 1);   
+    
+    }
+    const eraseSkill = (skill)=> {
+      const index = skills.value.findIndex(s => s.id == skill.id);
+        skills.value.push(skill);
+        console.log(skills.value);
+        SkillForRequest.value.splice(index, 1);   
+    }
 
+    const saveSkill = async() => {
+    // 서버에 전송할 데이터 형식인 SkillEntity의 리스트를 생성
+        const skillEntities = SkillForRequest.value.map(skill => {
+            return {
+                skillId: skill.skillId,
+                skillName: skill.skillName
+            };
+        });
+        // 서버에 데이터 전송
+        fetch(`http://localhost:8000/member-service/rest/mypage/6249388071526484416/skill`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(skillEntities)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Response:', data);
+            OffSkillPopUp();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    };
+
+    
+
+    const GetAllRecCate = async()=>{
+        await fetch(`http://localhost:8000/board-service/recruit/recruit-categories`).then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+            AllRecCate.value = data;
+            console.log(AllRecCate.value);
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
+    };
+    
+    const addRecCate = (recCate)=> {
+        const index = AllRecCate.value.findIndex(s => s.id == recCate.id);
+        RecCateForRequest.value.push(recCate);
+        console.log(RecCateForRequest.value);
+        AllRecCate.value.splice(index, 1);   
+    }
+    const eraseRecCate = (recCate)=> {
+      const index = AllRecCate.value.findIndex(s => s.id == recCate.id);
+        AllRecCate.value.push(recCate);
+        console.log(AllRecCate.value);
+        RecCateForRequest.value.splice(index, 1);   
+    }
+
+    const saveRecCate = async() => {
+        console.RecCateForRequest.value;
+    // 서버에 전송할 데이터 형식인 SkillEntity의 리스트를 생성
+        const requestRcruit = RecCateForRequest.value.map(recruit => {
+            return {
+                recruitCategoryId : recruit.recruitCategoryId
+            };
+        });
+        // 서버에 데이터 전송
+        fetch(`http://localhost:8000/board-service/recruit/recruit-categories/6249388071526484416`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestRcruit)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Response:', data);
+            
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    };
 
 
 </script>
@@ -260,6 +396,24 @@
     .skillBox{
         background-color: #515151;
         width: 120px;
+        height: 25px;
+        color: white;
+        border: 1px solid black;
+        font-size: 18px;
+        font-weight: 800;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        display: flex;
+        
+        margin: 2px; 
+    }  
+    .recruitBox{
+        background-color: #515151;
+        width: 150px;
         height: 25px;
         color: white;
         border: 1px solid black;

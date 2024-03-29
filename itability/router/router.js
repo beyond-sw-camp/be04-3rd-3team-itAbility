@@ -12,7 +12,6 @@ const routes = [
     {path: '/login', component: Login},
     {
         path: '/feeds/:boardId', // 동적 세그먼트를 사용하여 피드 boardId를 경로에 포함
-        name: 'FeedDetail',
         component: FeedDetail,
     },
     {
@@ -21,7 +20,6 @@ const routes = [
     },
     {
         path: '/create',
-        name: 'FeedCreate',
         component: FeedCreate
     },
     {

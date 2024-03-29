@@ -169,17 +169,6 @@
   justify-content: center;
 }
 </style>
-
-<script setup>
-import { useRouter } from 'vue-router';
-
-const router = useRouter();
-
-  const changeRouter = (path) => {
-    // Vue Router의 push 메서드를 사용하여 해당 경로로 이동
-    router.push(path);
-  };
-</script>
 <script>
 export default {
   name: 'HeaderComponent',

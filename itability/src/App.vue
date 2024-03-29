@@ -1,10 +1,7 @@
 <template>
-  <header>
-    <Header/>
-  </header>
-  <main >
-        <RouterView style="margin: 0 25%;"/>
-
+  <header><Header/></header>
+  <main>
+    <router-view/>
   </main>
   <footer><Footer/></footer>
 </template>
@@ -17,6 +14,7 @@
 
 </script>
 
-<style>
+
+<style scoped>
 
 </style>

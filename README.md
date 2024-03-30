@@ -48,7 +48,10 @@
   6. 모집글 신청 인원 관리<br>![6. 모집글 신청 인원 관리](https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/22255663/85d6e4fb-a28a-4357-942b-db7bb1a93462)
   7. 신청한 모집글 관리<br>![7. 신청한 모집글 관리](https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/22255663/f1e83306-698a-43b9-83a7-f63d137a9de3)
 </details>
-
+<details>
+  <summary> 2. 채용정보 </summary>
+  1. 채용정보 출력 및 사이트 이동 <br>![채용정보](https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/37339093/5d5361d4-40c7-496a-9a93-2d5bad21d2be)
+</details>
   
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 

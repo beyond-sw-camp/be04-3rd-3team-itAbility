@@ -46,12 +46,6 @@
 
 <br>
 
-## 요구사항 정의서
-<img src = "https://github.com/kyulin-Kim/newRepo/assets/107897788/d4e23f2d-9f4a-4862-a774-d9c6bfa97aea" width="700%" height = "300%">
-<br>
-
-
-
 ## 화면 테스트
 <details>
   <summary> 1. 마이페이지 </summary>

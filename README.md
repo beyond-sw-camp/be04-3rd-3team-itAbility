@@ -47,8 +47,11 @@
   5. 작성한 모집글 수정 및 삭제<br>![5. 작성한 모집글 수정 및 삭제](https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/22255663/1238c35a-beda-4259-877d-7bc3a858b3b4)
   6. 모집글 신청 인원 관리<br>![6. 모집글 신청 인원 관리](https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/22255663/85d6e4fb-a28a-4357-942b-db7bb1a93462)
   7. 신청한 모집글 관리<br>![7. 신청한 모집글 관리](https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/22255663/f1e83306-698a-43b9-83a7-f63d137a9de3)
+  <summary> 2. 채용정보 </summary>
+  1. 채용정보 리스트 출력 및 클릭 시 사이트 이동 <br> ![1. 채용 정보사이트 이동](https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/37339093/5d5361d4-40c7-496a-9a93-2d5bad21d2be)
 </details>
 
+  
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 ---

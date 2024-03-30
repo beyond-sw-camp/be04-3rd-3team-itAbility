@@ -50,7 +50,7 @@
 </details>
 <details>
   <summary> 2. 채용정보 </summary>
-  1. 채용정보 출력 및 사이트 이동 <br>![채용정보](https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/37339093/5d5361d4-40c7-496a-9a93-2d5bad21d2be)
+  1. 채용정보 출력 및 사이트 이동 <br> ![채용정보](https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/37339093/5d5361d4-40c7-496a-9a93-2d5bad21d2be)
 </details>
   
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

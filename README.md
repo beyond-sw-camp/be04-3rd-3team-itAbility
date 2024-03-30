@@ -67,18 +67,15 @@
 </details>
 
 <details>
-  <summary> 3. 피드 </summary>
-
-  1. 전체 게시물 조회<br>
-  <img src="https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/107897788/38e90354-bb6c-4bee-87f4-18ca5bd83ada">
-
-  2. 게시물 상세 조회<br>
-  <img src="https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/107897788/df0df107-7075-4768-8049-13655c489d4d">
-
-  3. 게시물 생성<br>
-  <img src="https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/107897788/3d692e97-cdfa-442b-b1de-c13d232db9e7">
-    
+    <summary> 3. 게시물 </summary>
+    1. 게시물 전체 조회<br>
+    <img src="https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/107897788/dfba27d1-a802-4f2e-9619-d50d01fc6c4a">
+    2. 상세조회<br>
+    <img src="https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/107897788/f574fb42-6720-44ea-a52b-8fb05a8bd05a">
+    3. 게시물 생성<br>
+    <img src="https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/107897788/799ff5cd-45fd-45a9-a6e4-ece1cf6be4ee">    
 </details>
+
 
   
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

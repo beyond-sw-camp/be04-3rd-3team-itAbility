@@ -20,8 +20,20 @@
 
 ## 스토리보드
 
+<details>
+    <summary> 1. 마이페이지 </summary>
+      . <img src="https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/22255663/3242f73b-8911-4b58-a44d-fe05ea8a31cd">
+      . <img src="https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/22255663/da414a8f-95a6-4590-9b88-065185c00553">
+      . <img src="https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/22255663/4408358d-fbaa-4333-b0e3-c4c139f5f4af">
+      . <img src="https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/22255663/7dcf308a-24c2-4670-827c-6ddfa153ed0b">
+      . <img src="https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/22255663/b41cfaa2-7661-4dcc-aad0-257f2d709a50">
+      . <img src="https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/22255663/c59987c8-ac9d-4ec9-bad4-3589b6ee957a">
+      . <img src="https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/22255663/b0ab7c4e-97f4-42e7-a48c-6145a97b039e">
+      <img src="https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/22255663/75bbad65-b456-4224-8bd3-5099760ce5b6">
+</details>
 
 ## 기능명세서
+
 
 
 ## 테스트 계획

@@ -37,7 +37,7 @@
 </details>
 
 ## 기능명세서
-
+<img src = "https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/22255663/4bf52fdc-4160-4b93-b3cf-d3eb4d7b6560">
 
 
 ## 테스트 계획

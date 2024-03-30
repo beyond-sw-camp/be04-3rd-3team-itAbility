@@ -65,6 +65,21 @@
   1. 채용정보 출력 및 사이트 이동 
   <br> <img src ="https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/37339093/5d5361d4-40c7-496a-9a93-2d5bad21d2be"
 </details>
+
+<details>
+  <summary> 3. 피드 </summary>
+
+  1. 전체 게시물 조회<br>
+  <img src="https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/107897788/38e90354-bb6c-4bee-87f4-18ca5bd83ada">
+
+  2. 게시물 상세 조회<br>
+  <img src="https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/107897788/df0df107-7075-4768-8049-13655c489d4d">
+
+  3. 게시물 생성<br>
+  <img src="https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/107897788/3d692e97-cdfa-442b-b1de-c13d232db9e7">
+    
+</details>
+
   
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 

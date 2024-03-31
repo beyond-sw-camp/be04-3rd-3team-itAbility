@@ -97,6 +97,7 @@
 
     4. 모집글 신청<br>
     <img src="https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/64297541/b7e18054-a92e-4dd8-ad6b-437522d31fc5">
+</details>
   
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 

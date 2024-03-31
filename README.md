@@ -41,7 +41,7 @@
 
 
 ## 테스트 계획
-
+<img src = "https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/22255663/54bc8d11-9c5e-459d-ad4b-2c48dbe35696">
 
 
 <br>
@@ -69,8 +69,10 @@
     <summary> 3. 게시물 </summary>
     1. 게시물 전체 조회<br>
     <img src="https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/107897788/dfba27d1-a802-4f2e-9619-d50d01fc6c4a">
+    <br>
     2. 상세조회<br>
     <img src="https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/107897788/f574fb42-6720-44ea-a52b-8fb05a8bd05a">
+    <br>
     3. 게시물 생성<br>
     <img src="https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/107897788/799ff5cd-45fd-45a9-a6e4-ece1cf6be4ee">    
 </details>

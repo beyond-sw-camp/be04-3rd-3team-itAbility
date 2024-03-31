@@ -89,14 +89,13 @@
 <details>
     <summary> 4. 모집글 </summary>
     1. 모집글 전체 조회<br>
-    
+    추후 추가<br><br>
     2. 모집글 상세조회<br>
-    
+    추후 추가<br><br>
     3. 모집글 작성<br>
-    <img src="https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/64297541/318156b2-354c-4b63-880e-4bfe69b6c5ed">
-
+    <img src="https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/64297541/318156b2-354c-4b63-880e-4bfe69b6c5ed"><br><br>
     4. 모집글 신청<br>
-    <img src="https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/64297541/b7e18054-a92e-4dd8-ad6b-437522d31fc5">
+    <img src="https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/64297541/b7e18054-a92e-4dd8-ad6b-437522d31fc5"><br>
 </details>
   
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

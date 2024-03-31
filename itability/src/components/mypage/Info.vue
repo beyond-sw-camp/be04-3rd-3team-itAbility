@@ -54,10 +54,13 @@
     </div>
     <div class="popup-overlay" v-if="RecCatePopUp">
         <div class="popup-content" >
+
             <span class="close" @click="OffRecCatePopUp">&times;</span>
             <h2>전문분야 관리</h2>
+
             <div class="profile-image-container">
-                <form id="modifyForm" @submit.prevent="submitForm">
+<!-- Info.vue:313 Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'value') -->
+
                     <br>기술 목록 <br>
                   <div class="recruitBox" v-for="recruit in AllRecCate" :key="index" style="display: flex;">
                     <span style="cursor: pointer; text-decoration: underline;" @click="addRecCate(recruit)">{{ recruit.recruitName }}</span>
@@ -68,7 +71,6 @@
                     <span style="cursor: pointer; text-decoration: underline;" @click="eraseRecCate(recruit)">{{ recruit.recruitName }}</span>
                   </div>
                   <button type="submit" @click="saveRecCate">추가</button>
-                </form>
 
             </div>
         </div>
@@ -309,8 +311,10 @@
         RecCateForRequest.value.splice(index, 1);   
     }
 
+    
     const saveRecCate = async() => {
-        console.RecCateForRequest.value;
+
+        console.log(RecCateForRequest.value);
     // 서버에 전송할 데이터 형식인 SkillEntity의 리스트를 생성
         const requestRcruit = RecCateForRequest.value.map(recruit => {
             return {
@@ -318,7 +322,7 @@
             };
         });
         // 서버에 데이터 전송
-        fetch(`http://localhost:8000/board-service/recruit/recruit-categories/6249388071526484416`, {
+        fetch(`http://localhost:8000/board-service/recruit/recruit-categories/profile/6249388071526484416`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -329,7 +333,7 @@
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            return response.json();
+            
         })
         .then(data => {
             console.log('Response:', data);

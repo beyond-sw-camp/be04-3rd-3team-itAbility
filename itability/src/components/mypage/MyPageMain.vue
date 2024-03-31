@@ -241,6 +241,7 @@ const fetchData = async () => {
         .then(data => {
             console.log('Image URL:', data);
             fetchData();
+            
         })
         .catch(error => {
             console.error('Error:', error);

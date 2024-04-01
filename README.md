@@ -20,7 +20,7 @@
 <br><br><br>
 
 # 프로젝트 아키텍쳐
-<img src = "https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/22255663/5c3be46f-e8f6-400e-92d9-1cec6387e23f](https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/22255663/8c99500c-2820-4934-b43c-c27098a8b2dc)">
+<img src = "https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/22255663/3f335b3e-6cad-43a7-9a74-7551d7d9bee6">
 
 # 스토리보드
 

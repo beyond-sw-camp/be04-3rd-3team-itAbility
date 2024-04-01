@@ -22,6 +22,11 @@
 # 프로젝트 아키텍쳐
 <img src = "https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/22255663/3f335b3e-6cad-43a7-9a74-7551d7d9bee6">
 
+<br>
+<br>
+<br>
+
+# 스토리보드
 
 <details>
     <summary> 1. 마이페이지 </summary>

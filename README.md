@@ -27,7 +27,7 @@
 <br>
 
 # 스토리보드
-
+ 
 <details>
     <summary> 1. 마이페이지 </summary>
       <br>1. 내정보 <br><img src="https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/22255663/7dcf308a-24c2-4670-827c-6ddfa153ed0b">
@@ -60,6 +60,10 @@
     <br>3. 모집글 작성<br><img src="https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/64297541/06fc5bae-6f1c-43de-ac67-f7c9460fcc97">
 </details>
 
+<details>
+    <summary> 4. 로그인 </summary>
+    <img src="https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/22255663/bd436e6a-ae56-4778-9b00-4eddc89ebd54">
+</details>
 
 <br><br><br>
 

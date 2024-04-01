@@ -40,6 +40,15 @@
     
 </details>
 
+<details>
+    <summary> 2. 게시물 </summary>
+    <br>1. 게시물 전체 조회 <br><img src="https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/107897788/57388b08-6462-4318-8fbe-25c15e04e9af">
+    <br>2. 게시물 상세 조회 <br><img src="https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/107897788/58f1aede-41ce-4e2c-a75f-f59fe9d58fcc">
+    <br>3. 게시물 생성 <br><img src="https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/107897788/728b6b1d-1b70-43dd-b168-00cde81bf874">
+    <br>4. 게시물 수 <br><img src="https://github.com/beyond-sw-camp/be04-3rd-3team-itAbility/assets/107897788/5f50af4d-3425-4538-9391-754eea0a769d">
+
+</details>
+
 
 
 
